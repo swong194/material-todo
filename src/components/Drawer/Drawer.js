@@ -8,9 +8,8 @@ class SideBar extends Component {
     return (
       <Drawer
         variant='permanent'
-        className="drawer"
       >
-        <div>Hello</div>
+        {this.props.children}
       </Drawer>
     );
   }
