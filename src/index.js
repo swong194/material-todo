@@ -1,6 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/App.js';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import configureStore from './store/store.js';
+import Root from './components/Root.js';
+
+import './index.css';
+
+document.addEventListener("DOMContentLoaded", () => {
+  // allows for preloadedState
+  const store = configureStore();
+  ReactDOM.render(<Root store={store} />, document.getElementById('root'));
+});
+
