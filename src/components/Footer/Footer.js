@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -13,6 +14,11 @@ const styles = {
   }
 };
 
+const mapStateToProps = state => {
+  return {
+
+  }
+}
 class Footer extends PureComponent {
   render() {
     const { classes } = this.props;
@@ -20,7 +26,7 @@ class Footer extends PureComponent {
     return (
       <Paper className={classes.Footer}>
         {this.props.children}
-        <Tabs value={this.props.value || 0} indicatorColor="secondary" textColor="secondary" centered>
+        <Tabs indicatorColor="secondary" textColor="secondary" centered>
           <Tab data-name="one" label="one" />
           <Tab data-name="two" label="two" />
           <Tab data-name="three" label="three" />
@@ -30,4 +36,4 @@ class Footer extends PureComponent {
   }
 }
 
-export default withStyles(styles)(Footer);
+export default connect(mapStateToProps)(withStyles(styles)(Footer));
