@@ -5,3 +5,8 @@ html {
 body {
   font-family: sans-serif;
 }
+
+#root {
+  min-height: 100vh;
+  position: relative;
+}
