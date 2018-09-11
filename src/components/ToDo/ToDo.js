@@ -4,9 +4,9 @@ import Typography from '@material-ui/core/Typography';
 
 class ToDo extends Component {
   render() {
-    const { todo } = this.props;
+    const { todos } = this.props;
 
-    if (!todo.length) {
+    if (!todos.length) {
       return (
         <Card>
           <Typography align="center">You have nothing todo...</Typography>
@@ -14,7 +14,7 @@ class ToDo extends Component {
       );
     }
 
-    return todo.map(todo => {
+    return todos.map(todo => {
       return <Card key={todo.id}>{todo.text}</Card>;
     });
   }

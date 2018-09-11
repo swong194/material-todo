@@ -1,7 +1,10 @@
 import { RECEIVE_GROUP, REMOVE_GROUP } from '../actions/groupActions.js';
-import { RECEIVE_TASK, REMOVE_TASK, COMPLETE_TASK } from '../actions/taskActions.js';
-
-const defaultState = {};
+import {
+  RECEIVE_TASK,
+  REMOVE_TASK,
+  COMPLETE_TASK,
+} from '../actions/taskActions.js';
+import defaultState from '../sample_data/groupsData.js';
 
 const groupsReducer = (state = defaultState, action) => {
   const { type, group, groupId, task, taskId } = action;
@@ -9,7 +12,7 @@ const groupsReducer = (state = defaultState, action) => {
 
   const newState = Object.assign({}, state);
 
-  switch(type) {
+  switch (type) {
     case RECEIVE_GROUP:
       newState[group.id] = { todo: [], complete: [] };
       return newState;
@@ -40,6 +43,6 @@ const groupsReducer = (state = defaultState, action) => {
     default:
       return newState;
   }
-}
+};
 
 export default groupsReducer;

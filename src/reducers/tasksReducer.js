@@ -1,6 +1,5 @@
 import { RECEIVE_TASK, REMOVE_TASK } from '../actions/taskActions.js';
-
-const defaultState = {};
+import defaultState from '../sample_data/taskData.js';
 
 const tasksReducer = (state = defaultState, action) => {
   const { type } = action;
@@ -22,6 +21,6 @@ const tasksReducer = (state = defaultState, action) => {
     default:
       return newState;
   }
-}
+};
 
 export default tasksReducer;

@@ -4,9 +4,9 @@ import Typography from '@material-ui/core/Typography';
 
 class Complete extends Component {
   render() {
-    const { complete } = this.props;
+    const { completes } = this.props;
 
-    if (!complete.length) {
+    if (!completes.length) {
       return (
         <Card>
           <Typography align="center">You have no completed tasks...</Typography>
@@ -14,7 +14,7 @@ class Complete extends Component {
       );
     }
 
-    return complete.map(complete => {
+    return completes.map(complete => {
       return <Card key={complete.id}>{complete.text}</Card>;
     });
   }
