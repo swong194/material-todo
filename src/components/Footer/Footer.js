@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { withStyles } from '@material-ui/core/styles';
+import { getGroupIds } from '../../selectors/selector.js';
 
 const styles = {
   Footer: {
@@ -11,25 +12,36 @@ const styles = {
     bottom: '0',
     width: '100%',
     padding: '10px',
-  }
+  },
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
+    groupIds: getGroupIds(state),
+    selected: ownProps.match.params.groupId,
+  };
+};
 
-  }
-}
 class Footer extends PureComponent {
+  handleChange = (_, value) => {
+    this.props.history.push(`/todo/${value}`);
+  };
+
   render() {
-    const { classes } = this.props;
+    const { classes, selected, groupIds } = this.props;
 
     return (
       <Paper className={classes.Footer}>
-        {this.props.children}
-        <Tabs indicatorColor="secondary" textColor="secondary" centered>
-          <Tab data-name="one" label="one" />
-          <Tab data-name="two" label="two" />
-          <Tab data-name="three" label="three" />
+        <Tabs
+          value={selected}
+          indicatorColor="secondary"
+          textColor="secondary"
+          centered
+          onChange={this.handleChange}
+        >
+          {groupIds.map(id => (
+            <Tab key={id} value={id} label={id} />
+          ))}
         </Tabs>
       </Paper>
     );

@@ -6,35 +6,14 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Complete from '../Complete/Complete.js';
 import ToDo from '../ToDo/ToDo.js';
+import {
+  selectTodosAndCompletes,
+  provideRedirect,
+} from '../../selectors/selector.js';
 
 const mapStateToProps = (state, ownProps) => {
-  const {
-    match: {
-      params: { groupId },
-    },
-  } = ownProps;
-
-  const { groups, tasks } = state;
-
-  // add redirect if coming from 'any' route
-  let redirect = 0;
-  if (groupId === 'any') {
-    redirect = Object.keys(groups)[0];
-  }
-
-  let group = groups[groupId];
-  let todos = [];
-  let completes = [];
-
-  if (group) {
-    group.todo.forEach(todoId => {
-      todos.push(tasks[todoId]);
-    });
-
-    group.complete.forEach(completeId => {
-      completes.push(tasks[completeId]);
-    });
-  }
+  const { todos, completes } = selectTodosAndCompletes(state, ownProps);
+  const redirect = provideRedirect(state, ownProps);
 
   return {
     completes,
