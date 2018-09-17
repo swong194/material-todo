@@ -16,7 +16,7 @@ const closeSidebar = () => {
 
 const toggleSidebar = () => {
   return {
-    type: OPEN_SIDEBAR,
+    type: TOGGLE_SIDEBAR,
   };
 };
 
