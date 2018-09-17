@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
 import Complete from '../Complete/Complete.js';
@@ -23,9 +24,11 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const styles = {
-  Paper: {
-    margin: '10px',
-    padding: '20px',
+  Header: {
+    margin: '15px',
+  },
+  Container: {
+    padding: '0 10px',
   },
 };
 
@@ -42,17 +45,29 @@ class Main extends PureComponent {
     const { completes, todos, classes } = this.props;
 
     return (
-      <Grid container>
+      <Grid className={classes.Container} spacing={8} container>
         <Grid item sm={6}>
-          <Paper square={true} className={classes.Paper}>
-            <ToDo todos={todos} />
-          </Paper>
+          <Typography
+            align="center"
+            className={classes.Header}
+            variant="headline"
+          >
+            Todo List
+          </Typography>
+          <Divider />
+          <ToDo todos={todos} />
         </Grid>
 
         <Grid item sm={6}>
-          <Paper square={true} className={classes.Paper}>
-            <Complete completes={completes} />
-          </Paper>
+          <Typography
+            align="center"
+            className={classes.Header}
+            variant="headline"
+          >
+            Complete List
+          </Typography>
+          <Divider />
+          <Complete completes={completes} />
         </Grid>
       </Grid>
     );
